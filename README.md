@@ -10,5 +10,12 @@ OPTIONS:
 --no-command | disable running command
 --no-startup | disable file check on script start
 
+* * * * * *
 copyright 2025 9JH1
+```
+## Install & Run
+```
+git clone https://github.com/9jh1/arr && cd arr
+gcc arr_2.c -o arr
+./arr
 ```
