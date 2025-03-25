@@ -17,5 +17,6 @@ copyright 2025 9JH1
 ```
 git clone https://github.com/9jh1/arr && cd arr
 gcc arr_2.c -o arr
+clear
 ./arr
 ```
