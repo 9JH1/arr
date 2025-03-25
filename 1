@@ -57,9 +57,6 @@ void db_impl(int line){
 }
 
 void help(){
-	printf("\"Auto Read-Runner\"\n");
-	printf("does something when a file is modifyed\n");
-	printf("* * * * * * *\n");
 	printf("arr [OPTIONS]\n");
 	printf("OPTIONS:\n");
 	printf("--command    | command run when file is modifyed\n");
@@ -68,7 +65,6 @@ void help(){
 	printf("--no-message | disable showing message\n");
 	printf("--no-command | disable running command\n");
 	printf("--no-startup | disable file check on script start\n");
-	exit(0);
 }
 
 int main(int argc, char *argv[]){
