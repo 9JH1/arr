@@ -13,10 +13,15 @@ OPTIONS:
 * * * * * *
 copyright 2025 9JH1
 ```
-## Install & Run
+## Compile & Run
 ```
 git clone https://github.com/9jh1/arr && cd arr
 gcc arr_2.c -o arr
 clear
 ./arr
+```
+## Install
+> ensure that there is not already a `arr` binary in your bin folder, if so rename or remove
+```
+sudo mv arr /usr/bin/arr
 ```
