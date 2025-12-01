@@ -1,27 +1,3 @@
-/* Automatic
- * Read
- * (and)
- * Runner
- *
- * -- DETAILS -- 
- * Version: 2.2
- * Author : :3hy (@9jh1)
- *
- * -- DESCRIPTION -- 
- * await file change and run command when changed
- *
- * -- ARGUMENTS --
- * interval, interval in seconds when the file is checked for changes
- * command, the command that is run when the file is changed
- * file, the file to watch
- * help, show dialog like this
- *
- * -- REQUIREMENTS --
- * have ctrl+c handling ( using signal )
- * handle all faults and issues unlike the previous versions
- */
-
-
 #include <stdio.h> // printf()
 #include <string.h> // strcmp()
 #include <stdlib.h> // atoi()
@@ -31,45 +7,15 @@
 #include <unistd.h> // sleep()
 
 #define BUFFER_SIZE 256
-
-// global file var
+#define db() db_impl(__LINE__)
 FILE *fptr;
 
-void exit_close(){
-	printf("CTRL+C pressed, exiting\n");
-	fclose(fptr);
-	exit(0);
-}
+void exit_close(void);
+time_t gmt(const char *);
+void db_impl(int);
+void help();
 
-time_t gmt(const char *file_path){
-	struct stat file_stat;
-	if(stat(file_path,&file_stat) == -1){
-		printf("error - Issue with gmt func\n");
-		exit(1);
-	}
-	return file_stat.st_mtime;
-}
 
-#define db() db_impl(__LINE__)
-void db_impl(int line){
-	printf("%d - debug\n",line);
-	fflush(stdout);
-}
-
-void help(){
-	printf("\"Auto Read-Runner\"\n");
-	printf("does something when a file is modifyed\n");
-	printf("* * * * * * *\n");
-	printf("arr [OPTIONS]\n");
-	printf("OPTIONS:\n");
-	printf("--command    | command run when file is modifyed\n");
-	printf("--interval   | interval in seconds the file is checked\n");
-	printf("--message    | message showen when file is edited\n");
-	printf("--no-message | disable showing message\n");
-	printf("--no-command | disable running command\n");
-	printf("--no-startup | disable file check on script start\n");
-	exit(0);
-}
 
 int main(int argc, char *argv[]){
 	char*filename="",
@@ -127,4 +73,43 @@ int main(int argc, char *argv[]){
 
 	}
 	return 0;
+}
+
+void exit_close()
+{
+	printf("CTRL+C pressed, exiting\n");
+	fclose(fptr);
+	exit(0);
+}
+
+time_t gmt(const char *file_path)
+{
+	struct stat file_stat;
+	if(stat(file_path,&file_stat) == -1){
+		printf("error - Issue with gmt func\n");
+		exit(1);
+	}
+	return file_stat.st_mtime;
+}
+
+void db_impl(int line)
+{
+	printf("%d - debug\n",line);
+	fflush(stdout);
+}
+
+void help()
+{
+	printf("\"Auto Read-Runner\"\n");
+	printf("does something when a file is modifyed\n");
+	printf("* * * * * * *\n");
+	printf("arr [OPTIONS]\n");
+	printf("OPTIONS:\n");
+	printf("--command    | command run when file is modifyed\n");
+	printf("--interval   | interval in seconds the file is checked\n");
+	printf("--message    | message showen when file is edited\n");
+	printf("--no-message | disable showing message\n");
+	printf("--no-command | disable running command\n");
+	printf("--no-startup | disable file check on script start\n");
+	exit(0);
 }

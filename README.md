@@ -16,7 +16,7 @@ copyright 2025 9JH1
 ## Compile & Run
 ```
 git clone https://github.com/9jh1/arr && cd arr
-gcc arr_2.c -o arr
+gcc arr.c -o arr
 clear
 ./arr
 ```
